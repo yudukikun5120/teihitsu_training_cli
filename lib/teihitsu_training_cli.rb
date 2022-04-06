@@ -54,7 +54,7 @@ class Trng < Thor
 
       RESULT
 
-      File.open("result.txt", "a") do |io|
+      File.open("lib/result.txt", "a") do |io|
         io.write(result)
       end
     end
@@ -66,7 +66,7 @@ class Trng < Thor
 
     start = options[:start] ? (options[:start].to_i - 1) : 0
 
-    items = CSV.read("problems/onyomi.csv")[start..]
+    items = CSV.read("lib/problems/onyomi.csv")[start..]
 
     items.each do |i|
       item = Item.new(i)
