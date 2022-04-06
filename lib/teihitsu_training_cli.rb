@@ -66,13 +66,13 @@ class Trng < Thor
   def onyomi
     puts "©︎ 2022 Teihitsu Training"
 
-    start = options[:start] ? (options[:start].to_i - 1) : 0
-
     items = CSV.read(
       File.expand_path("problems/onyomi.csv", __dir__)
-    )[start..]
+    )
 
-    items.each do |i|
+    start = options[:start] ? (options[:start].to_i - 1) : 0
+
+    items[start..].each do |i|
       item = Item.new(i)
       item.quiz
     end
