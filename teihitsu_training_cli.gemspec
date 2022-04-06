@@ -10,15 +10,15 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "teihitsu training for CLI"
   spec.description   = "A simple quiz application based on CLI."
-  spec.homepage      = "https://rubygems.org/gems/teihitsu-training-cli"
+  spec.homepage      = "https://rubygems.org/gems/teihitsu_training_cli"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 3.0.2"
 
-  spec.metadata["allowed_push_host"] = "https://rubygems.org/gems/teihitsu-training-cli"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org/gems/teihitsu_training_cli"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/yudukikun5120/teihitsu-training-cli"
-  spec.metadata["changelog_uri"] = "https://github.com/yudukikun5120/teihitsu-training-cli/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/yudukikun5120/teihitsu_training_cli"
+  spec.metadata["changelog_uri"] = "https://github.com/yudukikun5120/teihitsu_training_cli/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
