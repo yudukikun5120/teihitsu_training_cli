@@ -1,4 +1,4 @@
-# TeihitsuTrainingCli
+# Teihitsu Training CLI
 
 [![Gem Version](https://badge.fury.io/rb/teihitsu_training_cli.svg)](https://badge.fury.io/rb/teihitsu_training_cli)
 [![Ruby](https://github.com/yudukikun5120/teihitsu_training_cli/actions/workflows/main.yml/badge.svg)](https://github.com/yudukikun5120/teihitsu_training_cli/actions/workflows/main.yml)
