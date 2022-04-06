@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    teihitsu_training_cli (0.1.1)
+    teihitsu_training_cli (0.1.2)
       thor (~> 1.2, >= 1.2.1)
 
 GEM
