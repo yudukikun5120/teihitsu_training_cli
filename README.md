@@ -1,5 +1,7 @@
 # TeihitsuTrainingCli
 
+[![Ruby](https://github.com/yudukikun5120/teihitsu_training_cli/actions/workflows/main.yml/badge.svg)](https://github.com/yudukikun5120/teihitsu_training_cli/actions/workflows/main.yml)
+
 Teihitsu Training CLI is a simple quiz application based on CLI. It enables us to solve a huge amount of [Kanji Teihitsu][kanjiteihitsu-homepage] questions in numerical order rather than randomly.
 
 [kanjiteihitsu-homepage]: https://hagunn2525.wixsite.com/kanji-teihitsu
