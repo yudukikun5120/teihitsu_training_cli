@@ -22,15 +22,17 @@ Or install it yourself as:
 
 ## Usage
 
-cd teihitsu-training-cli
-trng
+    cd teihitsu-training-cli
+    trng
 
 ### Options
 To specify the item you want to start:
--start[-s]=<index>
+
+    -start[-s]=<index>
 
 if you want to know more options:
-thor help trng:onyomi
+
+    thor help trng:onyomi
 
 ## Development
 
