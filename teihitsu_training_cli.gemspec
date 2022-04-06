@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = "A simple quiz application based on CLI."
   spec.homepage      = "https://rubygems.org/gems/teihitsu-training-cli"
   spec.license       = "MIT"
-  spec.required_ruby_version = ">= 3.0.2"
+  spec.required_ruby_version = ">= 2.4.0"
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org/gems/teihitsu-training-cli"
 
