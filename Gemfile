@@ -7,6 +7,6 @@ gemspec
 
 gem "rake", "~> 13.0"
 
-gem 'thor', '~> 1.2', '>= 1.2.1'
+gem "thor", "~> 1.2", ">= 1.2.1"
 
 gem "rubocop", "~> 1.7"
