@@ -25,7 +25,6 @@ Or install it yourself as:
 
 ## Usage
 
-    cd teihitsu-training-cli
     trng
 
 ### Options

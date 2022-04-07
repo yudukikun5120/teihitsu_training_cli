@@ -14,7 +14,9 @@ class Trng < Thor
 
   method_option :start,
                 aliases: "-s",
-                desc: "Specify the index of the item you want to start"
+                desc: "Specify the index of the item you want to start",
+                type: :numeric,
+                default: 1
 
   # define the quiz item
   class Item
@@ -33,7 +35,8 @@ class Trng < Thor
     def test(user_answer)
       if @answers.include?(user_answer)
         alt_answers = (@answers - [user_answer]).compact
-        puts "✅\n別答：#{alt_answers&.join}" unless alt_answers&.empty?
+        puts "✅"
+        puts "別答：#{alt_answers&.join}" unless alt_answers&.empty?
       else
         puts "❌\n正答："
         @answers.map { |e| puts e.to_s }
@@ -70,7 +73,7 @@ class Trng < Thor
       File.expand_path("problems/onyomi.csv", __dir__)
     )
 
-    start = options[:start] ? (options[:start].to_i - 1) : 0
+    start = options[:start] - 1
 
     items[start..].each do |i|
       item = Item.new(i)
