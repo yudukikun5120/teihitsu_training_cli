@@ -76,7 +76,7 @@ class Trng < Thor
     end
   end
 
-  desc "question", "The questions will be listed in numerical order."
+  desc "question", "List questions in numerical order"
   def question
     puts "©︎ 2022 Teihitsu Training"
 
@@ -88,7 +88,7 @@ class Trng < Thor
     end
   end
 
-  desc "result", "Show the questions you answered incorrectly."
+  desc "result", "Show the questions you answered incorrectly"
   def result
     file_path = File.expand_path("result.txt", __dir__)
 

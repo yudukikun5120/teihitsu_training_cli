@@ -25,7 +25,13 @@ Or install it yourself as:
 
 ## Usage
 
+Start answering problems:
+
     trng
+
+You can see the problems you answered incorrectly:
+
+    trng result
 
 ### Options
 To specify the item you want to start:
@@ -34,7 +40,7 @@ To specify the item you want to start:
 
 if you want to know more options:
 
-    thor help trng:onyomi
+    trng help
 
 ## Development
 
