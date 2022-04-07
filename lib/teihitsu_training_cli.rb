@@ -10,7 +10,7 @@ require "thor"
 class Trng < Thor
   package_name "Teihitsu Training CLI"
 
-  default_command :onyomi
+  default_command :question
 
   method_option :start,
                 aliases: "-s",
@@ -18,10 +18,15 @@ class Trng < Thor
                 type: :numeric,
                 default: 1
 
+  method_option :category,
+                aliases: "-c",
+                desc: "Specify the category of the items",
+                type: :string,
+                default: "onyomi"
+
   # define the quiz item
   class Item
-    def initialize(item)
-      (@index, @question, @_level, @answer, @alt_answer, @note) = item
+    def initialize(_item)
       @answers = [@answer, @alt_answer].compact
     end
 
@@ -44,8 +49,6 @@ class Trng < Thor
       end
     end
 
-    private
-
     def write_result
       result = <<~"RESULT"
         [#{@index}] #{@question}
@@ -65,19 +68,46 @@ class Trng < Thor
     end
   end
 
-  desc "onyomi", "The questions will be taken from the onyomi section"
-  def onyomi
+  # define the onyomi item
+  class Onyomi < Item
+    def initialize(item)
+      (@index, @question, @_level, @answer, @alt_answer, @note) = item
+      super
+    end
+  end
+
+  desc "question", "The questions will be listed in numerical order."
+  def question
     puts "©︎ 2022 Teihitsu Training"
 
-    items = CSV.read(
-      File.expand_path("problems/onyomi.csv", __dir__)
-    )
-
-    start = options[:start] - 1
-
-    items[start..].each do |i|
-      item = Item.new(i)
+    items[(options[:start] - 1)..].each do |i|
+      item = Trng.const_get(
+        options[:category].capitalize
+      ).new i
       item.quiz
+    end
+  end
+
+  desc "result", "Show the questions you answered incorrectly."
+  def result
+    file_path = File.expand_path("result.txt", __dir__)
+
+    puts "There are no questions you answered incorrectly." if FileTest.empty? file_path
+
+    io = File.open(file_path)
+
+    io.readlines.each do |line|
+      puts line
+    end
+
+    io.close
+  end
+
+  no_commands do
+    def items
+      CSV.read(
+        File.expand_path("problems/#{options[:category]}.csv", __dir__)
+      )
     end
   end
 end
