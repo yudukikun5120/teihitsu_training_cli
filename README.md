@@ -5,6 +5,8 @@
 
 Teihitsu Training CLI is a simple quiz application based on CLI. It enables us to solve a huge amount of [Kanji Teihitsu][kanjiteihitsu-homepage] questions in numerical order rather than randomly.
 
+[![asciicast](https://asciinema.org/a/zYPPhi8Rkaj3Ugh65r5fhrogU.svg)](https://asciinema.org/a/zYPPhi8Rkaj3Ugh65r5fhrogU)
+
 [kanjiteihitsu-homepage]: https://hagunn2525.wixsite.com/kanji-teihitsu
 
 ## Installation
