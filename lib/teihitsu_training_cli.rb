@@ -5,6 +5,7 @@ require_relative "teihitsu_training_cli/version"
 
 require "csv"
 require "thor"
+require "fileutils"
 
 # The class of quiz app
 class Trng < Thor
@@ -49,6 +50,10 @@ class Trng < Thor
     end
 
     def write_result
+      file_path = File.expand_path "teihitsu_training_cli/result.txt", Dir.home
+
+      create_result_file file_path unless File.exist? file_path
+
       result = <<~"RESULT"
         [#{@index}] #{@question}
         ❌
@@ -58,11 +63,14 @@ class Trng < Thor
 
       RESULT
 
-      File.open(
-        File.expand_path("result.txt", __dir__), "a"
-      ) do |io|
-        io.write(result)
+      File.open(file_path, "a") do |io|
+        io.write result
       end
+    end
+
+    def create_result_file(file_path)
+      Dir.mkdir File.dirname file_path
+      FileUtils.touch file_path
     end
   end
 
@@ -107,7 +115,7 @@ class Trng < Thor
 
   desc "result", "Show the questions you answered incorrectly"
   def result
-    file_path = File.expand_path("result.txt", __dir__)
+    file_path = File.expand_path("teihitsu_training_cli/result.txt", Dir.home)
 
     puts "There are no questions you answered incorrectly." if FileTest.empty? file_path
 
