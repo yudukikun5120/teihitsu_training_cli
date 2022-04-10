@@ -7,4 +7,5 @@
 /spec/reports/
 /tmp/
 
-results.txt
+result.txt
+.DS_Store

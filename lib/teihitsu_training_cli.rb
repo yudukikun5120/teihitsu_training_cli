@@ -41,10 +41,9 @@ class Trng < Thor
       if @answers.include?(user_answer)
         alt_answers = (@answers - [user_answer]).compact
         puts "✅"
-        puts "別答：#{alt_answers&.join}" unless alt_answers&.empty?
+        puts "別答：#{alt_answers}" unless alt_answers&.empty?
       else
-        puts "❌\n正答："
-        @answers.map { |e| puts e.to_s }
+        puts "❌\n正答：#{@answers}"
         write_result
       end
     end
@@ -53,8 +52,7 @@ class Trng < Thor
       result = <<~"RESULT"
         [#{@index}] #{@question}
         ❌
-        正答：
-        #{@answers.map(&:to_s)}
+        正答：#{@answers}
 
         #{@note}
 
@@ -71,8 +69,27 @@ class Trng < Thor
   # define the onyomi item
   class Onyomi < Item
     def initialize(item)
-      (@index, @question, @_level, @answer, @alt_answer, @note) = item
       super
+      (@index, @question, @_level, @answer, @alt_answer, @note) = item
+    end
+  end
+
+  # define the kunyomi item
+  class Kunyomi < Item
+    def initialize(item)
+      super
+      (@index, @question, @_level, @answers, @note) = item
+      @answers = @answers.split
+    end
+  end
+
+  # define the yoji-kaki item
+  class Yojikaki < Item
+    def initialize(item)
+      super
+      (@index, @question, @reading, @_level, @answer, @alt_answers, @source, @note) = item
+      @answers = %W[#{@answer}]
+      @answers.concat @alt_answers.split unless @alt_answers.nil?
     end
   end
 
