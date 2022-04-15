@@ -101,6 +101,16 @@ class Trng < Thor
     end
   end
 
+  # define the Jukuji/Ateji item
+  class Jyuku_ate < Item
+    def initialize(item)
+      super
+      (@index, @question, @_level, @answer, @alt_answers, @note) = item
+      @answers = %W[#{@answer}]
+      @answers.concat @alt_answers.split unless @alt_answers.nil?
+    end
+  end
+
   desc "question", "List questions in numerical order"
   def question
     puts "©︎ 2022 Teihitsu Training"
