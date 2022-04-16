@@ -32,10 +32,10 @@ class Trng < Thor
     end
 
     def quiz
-      puts "\n[#{@index}] #{@question}"
+      puts "[#{@index}] #{@question}"
       user_answer = $stdin.gets.chomp.strip
       test user_answer
-      puts @note
+      puts @note, "\n"
     end
 
     def test(user_answer)
@@ -78,7 +78,12 @@ class Trng < Thor
   class Onyomi < Item
     def initialize(item)
       super
-      (@index, @question, @_level, @answer, @alt_answer, @note) = item
+      @index,
+      @question,
+      @_level,
+      @answer,
+      @alt_answer,
+      @note = item
     end
   end
 
@@ -86,7 +91,11 @@ class Trng < Thor
   class Kunyomi < Item
     def initialize(item)
       super
-      (@index, @question, @_level, @answers, @note) = item
+      @index,
+      @question,
+      @_level,
+      @answers,
+      @note = item
       @answers = @answers.split
     end
   end
@@ -95,7 +104,13 @@ class Trng < Thor
   class Yojikaki < Item
     def initialize(item)
       super
-      (@index, @question, @reading, @_level, @answer, @alt_answers, @source, @note) = item
+      @index,
+      @question,
+      @reading,
+      @_level,
+      @answer,
+      @alt_answers,
+      @source, @note = item
       @answers = %W[#{@answer}]
       @answers.concat @alt_answers.split unless @alt_answers.nil?
     end
@@ -105,9 +120,42 @@ class Trng < Thor
   class Jyukuate < Item
     def initialize(item)
       super
-      (@index, @question, @_level, @answer, @alt_answers, @note) = item
+      @index,
+      @question,
+      @_level,
+      @answer,
+      @alt_answers,
+      @note = item
       @answers = %W[#{@answer}]
       @answers.concat @alt_answers.split unless @alt_answers.nil?
+    end
+  end
+
+  # define the Jyukugo no Yomi and Ichiji no Kunyomi
+  class Onkun < Item
+    def initialize(item)
+      super
+      @content = { onyomi: {}, kunyomi: {} }
+      @index,
+      @content[:onyomi][:question],
+      @content[:onyomi][:answers],
+      @content[:kunyomi][:question],
+      @content[:kunyomi][:answers],
+      @_level,
+      @note = item
+    end
+
+    def quiz
+      @content.each do |onkun, c|
+        onkun = onkun == :onyomi ? "音" : "訓"
+        @question = c[:question]
+        @answers = c[:answers].split
+
+        puts "[#{@index}] (#{onkun}) #{@question}"
+        user_answer = $stdin.gets.chomp.strip
+        test user_answer
+        puts @note, "\n"
+      end
     end
   end
 
@@ -125,11 +173,11 @@ class Trng < Thor
 
   desc "result", "Show the questions you answered incorrectly"
   def result
-    file_path = File.expand_path("teihitsu_training_cli/result.txt", Dir.home)
+    file_path = File.expand_path "teihitsu_training_cli/result.txt", Dir.home
 
     puts "There are no questions you answered incorrectly." if FileTest.empty? file_path
 
-    io = File.open(file_path)
+    io = File.open file_path
 
     io.readlines.each do |line|
       puts line
