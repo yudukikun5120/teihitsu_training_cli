@@ -92,7 +92,7 @@ class Trng < Thor
   end
 
   # define the yoji-kaki item
-  class YojiKaki < Item
+  class Yojikaki < Item
     def initialize(item)
       super
       (@index, @question, @reading, @_level, @answer, @alt_answers, @source, @note) = item
@@ -102,7 +102,7 @@ class Trng < Thor
   end
 
   # define the Jukuji/Ateji item
-  class JyukuAte < Item
+  class Jyukuate < Item
     def initialize(item)
       super
       (@index, @question, @_level, @answer, @alt_answers, @note) = item
