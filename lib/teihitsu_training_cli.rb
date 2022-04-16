@@ -146,16 +146,17 @@ class Trng < Thor
     end
 
     def quiz
+      puts "[#{@index}]"
       @content.each do |onkun, c|
         onkun = onkun == :onyomi ? "音" : "訓"
         @question = c[:question]
         @answers = c[:answers].split
 
-        puts "[#{@index}] (#{onkun}) #{@question}"
+        puts "(#{onkun}) #{@question}"
         user_answer = $stdin.gets.chomp.strip
         test user_answer
-        puts @note, "\n"
       end
+      puts @note, "\n"
     end
   end
 
