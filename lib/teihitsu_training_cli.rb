@@ -27,9 +27,7 @@ class Trng < Thor
 
   # define the quiz item
   class Item
-    def initialize(_item)
-      @answers = [@answer, @alt_answer].compact
-    end
+    def initialize(_item); end
 
     def quiz
       puts "[#{@index}] #{@question}"
@@ -39,10 +37,10 @@ class Trng < Thor
     end
 
     def test(user_answer)
-      if @answers.include?(user_answer)
+      if @answers.include? user_answer
         alt_answers = (@answers - [user_answer]).compact
         puts "✅"
-        puts "別答：#{alt_answers}" unless alt_answers&.empty?
+        puts "別答：#{alt_answers}" if alt_answers.any?
       else
         puts "❌\n正答：#{@answers}"
         write_result
@@ -84,6 +82,7 @@ class Trng < Thor
       @answer,
       @alt_answer,
       @note = item
+      @answers = [@answer, @alt_answer].compact
     end
   end
 
