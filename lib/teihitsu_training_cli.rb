@@ -6,6 +6,7 @@ require_relative "teihitsu_training_cli/version"
 require "csv"
 require "thor"
 require "fileutils"
+require "xdg"
 
 # The class of quiz app
 class Trng < Thor
@@ -48,7 +49,7 @@ class Trng < Thor
     end
 
     def write_result
-      file_path = File.expand_path "teihitsu_training_cli/result.txt", Dir.home
+      file_path = result_file_path
 
       create_result_file file_path unless File.exist? file_path
 
@@ -67,7 +68,7 @@ class Trng < Thor
     end
 
     def create_result_file(file_path)
-      Dir.mkdir File.dirname file_path
+      FileUtils.mkdir_p File.dirname file_path
       FileUtils.touch file_path
     end
   end
@@ -173,7 +174,7 @@ class Trng < Thor
 
   desc "result", "Show the questions you answered incorrectly"
   def result
-    file_path = File.expand_path "teihitsu_training_cli/result.txt", Dir.home
+    file_path = result_file_path
 
     puts "There are no questions you answered incorrectly." if FileTest.empty? file_path
 
@@ -191,6 +192,10 @@ class Trng < Thor
       CSV.read(
         File.expand_path("problems/#{options[:category]}.csv", __dir__)
       )
+    end
+
+    def result_file_path
+      XDG::Config.new.home.join("teihitsu_training_cli", "result.txt").to_s
     end
   end
 end
