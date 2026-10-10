@@ -1,16 +1,21 @@
-name: Ruby
+name: Ruby tests
 
-on: [push,pull_request]
+on: [push, pull_request]
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v7
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.2.0
+        ruby-version: "3.2"
         bundler-cache: true
-    - name: Run the default task
-      run: bundle exec rake
+    - name: Run tests
+      run: bundle exec rake test
+    - name: Run RuboCop
+      run: bundle exec rake rubocop
