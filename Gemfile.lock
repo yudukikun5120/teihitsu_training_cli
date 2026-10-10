@@ -19,7 +19,7 @@ GEM
     prism (1.9.0)
     racc (1.8.1)
     rainbow (3.1.1)
-    rake (13.0.6)
+    rake (13.4.2)
     regexp_parser (2.13.1)
     rubocop (1.91.0)
       json (>= 2.3)
@@ -48,7 +48,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  rake (~> 13.0)
+  rake (~> 13.4)
   rubocop (~> 1.91)
   teihitsu_training_cli!
   thor (~> 1.2, >= 1.2.1)
