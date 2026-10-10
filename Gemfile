@@ -10,3 +10,5 @@ gem "rake", "~> 13.0"
 gem "thor", "~> 1.2", ">= 1.2.1"
 
 gem "rubocop", "~> 1.7"
+
+gem "minitest", "~> 5.0", group: :test
