@@ -5,7 +5,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in teihitsu_training_cli.gemspec
 gemspec
 
-gem "rake", "~> 13.0"
+gem "rake", "~> 13.4"
 
 gem "thor", "~> 1.2", ">= 1.2.1"
 
