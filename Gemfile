@@ -9,6 +9,6 @@ gem "rake", "~> 13.4"
 
 gem "thor", "~> 1.5"
 
-gem "rubocop", "~> 1.91"
+gem "rubocop", "~> 1.92"
 
 gem "minitest", "~> 6.0", group: :test
