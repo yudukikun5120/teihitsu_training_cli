@@ -11,4 +11,4 @@ gem "thor", "~> 1.5"
 
 gem "rubocop", "~> 1.91"
 
-gem "minitest", "~> 5.0", group: :test
+gem "minitest", "~> 6.0", group: :test
